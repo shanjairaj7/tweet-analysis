@@ -1,0 +1,723 @@
+{
+  "tweets": [
+    {
+      "id": 1895778099759104288,
+      "original_text": "Ramadan is a month where hope is renewed and righteous deeds flourishwishing you a blessed",
+      "translated_text": "Ramadan is a month where hope is renewed and righteous deeds flourishwishing you a blessed",
+      "sentiment_analysis": {
+        "sentiment": "positive",
+        "confidence": 0.95
+      },
+      "emotion_analysis": {
+        "fear": 0.0,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.125,
+        "surprise": 0.125,
+        "positive": 0.375,
+        "negative": 0.0,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.25,
+        "anticipation": 0.125
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The sentence lacks punctuation and proper spacing, especially between 'flourish' and 'wishing.' It should be divided into two separate ideas or sentences for clarity: \"Ramadan is a month where hope is renewed and righteous deeds flourish. Wishing you a blessed...\"",
+        "discourse_type": "Greeting/Wish",
+        "coherence_score": 0.7,
+        "named_entities": [
+          "Ramadan"
+        ],
+        "writing_style": "Informal"
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 36,
+          "engagement_rate": 0.004515805318615153,
+          "views_to_engagement_ratio": 221.44444444444446
+        },
+        "composition": {
+          "favorites_percent": 80.55555555555556,
+          "retweets_percent": 13.88888888888889,
+          "replies_percent": 5.555555555555555,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 0.0
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 13,
+          "day": "Saturday",
+          "date": "2025-03-01"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1895778099759104288",
+      "language": "en",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 0,
+        "favorite_count": 29,
+        "retweet_count": 5,
+        "reply_count": 2,
+        "quote_count": 0
+      },
+      "created_at": "2025-03-01 13:08:15",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "hashtags": "#Ramadan"
+    },
+    {
+      "id": 1895525048687181968,
+      "original_text": "شهر يتجدد فيه الأمل وتزدهر فيه الأعمال الصالحة كل عام وأنتم بخير",
+      "translated_text": "A month in which hope is renewed and good deeds flourish. Wishing you all the best every year.",
+      "sentiment_analysis": {
+        "sentiment": "positive",
+        "confidence": 0.95
+      },
+      "emotion_analysis": {
+        "fear": 0.0,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.2,
+        "surprise": 0.2,
+        "positive": 0.2,
+        "negative": 0.0,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.2,
+        "anticipation": 0.2
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The tweet is composed of two sentences. The first sentence is a relative clause without an explicit subject, implying 'the month' as the subject and describing its qualities. The second sentence is complete and features a subject ('I') implied by the verb 'wishing'. Overall, the tweet uses simple sentence structures.",
+        "discourse_type": "General well-wishing and positive expression",
+        "coherence_score": 8.5,
+        "named_entities": [],
+        "writing_style": "The writing style is informal yet polished, featuring a warm and positive tone aimed at encouraging optimism and goodwill. The choice of words like 'hope,' 'renewed,' and 'flourish' contribute to an uplifting message."
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 33,
+          "engagement_rate": 0.005488109096956594,
+          "views_to_engagement_ratio": 182.21212121212122
+        },
+        "composition": {
+          "favorites_percent": 78.78787878787878,
+          "retweets_percent": 21.21212121212121,
+          "replies_percent": 0.0,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 0.0
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 20,
+          "day": "Friday",
+          "date": "2025-02-28"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1895525048687181968",
+      "language": "ar",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 0,
+        "favorite_count": 26,
+        "retweet_count": 7,
+        "reply_count": 0,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-28 20:22:43",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "hashtags": "#Ramadan, #Riyadh_Expo2030"
+    },
+    {
+      "id": 1894824232208445818,
+      "original_text": "At the Eng Abdulaziz Alghannam General Director of the Riyadh Support Office emphasized the Expos key role as a global center for innovation and collaboration He highlighted its significant economic and social benefits expressed gratitude for the leaderships ongoing support and praised the international communitys confidence in Expos initiatives",
+      "translated_text": "At the Eng Abdulaziz Alghannam General Director of the Riyadh Support Office emphasized the Expos key role as a global center for innovation and collaboration He highlighted its significant economic and social benefits expressed gratitude for the leaderships ongoing support and praised the international communitys confidence in Expos initiatives",
+      "sentiment_analysis": {
+        "sentiment": "positive",
+        "confidence": 0.85
+      },
+      "emotion_analysis": {
+        "fear": 0.08333333333333333,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.16666666666666666,
+        "surprise": 0.0,
+        "positive": 0.4166666666666667,
+        "negative": 0.0,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.25,
+        "anticipation": 0.08333333333333333
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The tweet consists of a single long sentence, which could be more clear with proper punctuation. It lacks commas that could separate clauses and lists, making it harder to read. Punctuation marks such as commas after 'Riyadh Support Office,' 'innovation and collaboration,' and 'benefits' would improve readability. Additionally, there should be a comma after 'support,' and contractions like \"community's\" should include an apostrophe.",
+        "discourse_type": "Informative",
+        "coherence_score": 6.5,
+        "named_entities": [
+          "Eng Abdulaziz Alghannam",
+          "Riyadh Support Office",
+          "Expo"
+        ],
+        "writing_style": "Formal"
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 29,
+          "engagement_rate": 0.003599801390268123,
+          "views_to_engagement_ratio": 277.7931034482759
+        },
+        "composition": {
+          "favorites_percent": 75.86206896551724,
+          "retweets_percent": 10.344827586206897,
+          "replies_percent": 6.896551724137931,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 6.896551724137931
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 21,
+          "day": "Wednesday",
+          "date": "2025-02-26"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1894824232208445818",
+      "language": "en",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 2,
+        "favorite_count": 22,
+        "retweet_count": 3,
+        "reply_count": 2,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-26 21:57:55",
+      "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+      "hashtags": "#SaudiMediaForum, #Expo2030"
+    },
+    {
+      "id": 1892590816297685256,
+      "original_text": "إكسبو الرياض عالم جديد في هذا العالم بإرث غير مسبوق وتجربة لا تنسى الشعب السعودي سيكون القوة الدافعة وراء تنظيم إكسبو عالمي استثنائي يعكس قدرتنا على صناعة المستقبل سعادة المهندس عبد العزيز الغنام مدير عام مكتب دعم معرض الرياض إكسبو",
+      "translated_text": "Riyadh Expo: A new world in this world with an unprecedented legacy and an unforgettable experience. The Saudi people will be the driving force behind organizing an extraordinary global Expo that reflects our ability to shape the future, said Engineer Abdulaziz Al-Ghannam, General Manager of the Riyadh Expo Support Office.",
+      "sentiment_analysis": {
+        "sentiment": "positive",
+        "confidence": 0.95
+      },
+      "emotion_analysis": {
+        "fear": 0.14285714285714285,
+        "anger": 0.14285714285714285,
+        "anticip": 0.0,
+        "trust": 0.0,
+        "surprise": 0.14285714285714285,
+        "positive": 0.42857142857142855,
+        "negative": 0.14285714285714285,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.0
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The tweet consists of two main statements: the first part introduces the Riyadh Expo as a transformative and unique event, while the second part attributes a quote to Engineer Abdulaziz Al-Ghannam, highlighting the role of the Saudi people in organizing the Expo. The grammar is correct; sentences are well-structured, with correct use of articles, conjunctions, and punctuation. A notable feature is the use of epithets like 'unprecedented legacy' and 'unforgettable experience', which add emphasis.",
+        "discourse_type": "Promotional",
+        "coherence_score": 8.0,
+        "named_entities": [
+          "Riyadh Expo",
+          "Saudi",
+          "Engineer Abdulaziz Al-Ghannam",
+          "Riyadh Expo Support Office"
+        ],
+        "writing_style": "Formal and promotional."
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 41,
+          "engagement_rate": 0.004600538599640934,
+          "views_to_engagement_ratio": 217.3658536585366
+        },
+        "composition": {
+          "favorites_percent": 70.73170731707317,
+          "retweets_percent": 12.195121951219512,
+          "replies_percent": 0.0,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 17.073170731707318
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 18,
+          "day": "Thursday",
+          "date": "2025-02-20"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1892590816297685256",
+      "language": "ar",
+      "type": "Retweet",
+      "author_name": "المنتدى السعودي للإعلام",
+      "author_username": "saudi_mf",
+      "engagement_metrics": {
+        "bookmark_count": 7,
+        "favorite_count": 29,
+        "retweet_count": 5,
+        "reply_count": 0,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-20 18:03:07",
+      "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+      "hashtags": ""
+    },
+    {
+      "id": 1892579666898141403,
+      "original_text": "With the specialized seminars completed the Riyadh team is working at an accelerated pace to finalize this international dossier The Secretary General of the affirmed that since Saudi Arabias successful bid to host over a year and a half ago efforts have been ongoing in collaboration with the and the Expo company to ensure the dossiers completion to the highest standards",
+      "translated_text": "With the specialized seminars completed the Riyadh team is working at an accelerated pace to finalize this international dossier The Secretary General of the affirmed that since Saudi Arabias successful bid to host over a year and a half ago efforts have been ongoing in collaboration with the and the Expo company to ensure the dossiers completion to the highest standards",
+      "sentiment_analysis": {
+        "sentiment": "positive",
+        "confidence": 0.85
+      },
+      "emotion_analysis": {
+        "fear": 0.0625,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.125,
+        "surprise": 0.0625,
+        "positive": 0.25,
+        "negative": 0.0625,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.1875,
+        "anticipation": 0.25
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The tweet contains several grammatical issues, including missing commas, articles, and conjunctions that affect the sentence clarity and readability. The sentence should be broken down into smaller segments for clarity. Also, it appears that some essential information, such as the direct object after \"with the\" and \"the,\" is missing, leading to confusion about what is being referred to. Furthermore, apostrophes for possessive forms are missing, such as in \"Saudi Arabia's.\"",
+        "discourse_type": "Informative",
+        "coherence_score": 4.0,
+        "named_entities": [
+          "Riyadh",
+          "Saudi Arabia",
+          "Secretary General",
+          "the Expo company"
+        ],
+        "writing_style": "Formal"
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 20,
+          "engagement_rate": 0.00358487184083169,
+          "views_to_engagement_ratio": 278.95
+        },
+        "composition": {
+          "favorites_percent": 80.0,
+          "retweets_percent": 15.0,
+          "replies_percent": 0.0,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 5.0
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 17,
+          "day": "Thursday",
+          "date": "2025-02-20"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1892579666898141403",
+      "language": "en",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 1,
+        "favorite_count": 16,
+        "retweet_count": 3,
+        "reply_count": 0,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-20 17:18:49",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "hashtags": "#Expo2030, #BIE, #Expo2030"
+    },
+    {
+      "id": 1892570507842650439,
+      "original_text": "نقاش ثري في حول الفرص التي يقدمها إكسبو للرياض وتأثيره على المشهد الاقتصادي والثقافي والإعلامي حيث استعرض المتحدثون رؤية المملكة لاستضافة حدث عالمي استثنائي",
+      "translated_text": "A rich discussion about the opportunities offered by Expo Riyadh and its impact on the economic, cultural, and media landscape, where speakers reviewed the Kingdom's vision to host an exceptional global event.",
+      "sentiment_analysis": {
+        "sentiment": "positive",
+        "confidence": 0.9
+      },
+      "emotion_analysis": {
+        "fear": 0.0,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.0,
+        "surprise": 0.0,
+        "positive": 0.6666666666666666,
+        "negative": 0.0,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.0,
+        "anticipation": 0.3333333333333333
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The tweet is grammatically correct with a complex sentence structure. It contains a dependent clause 'where speakers reviewed the Kingdom's vision...' that provides additional information about the main clause 'A rich discussion about the opportunities offered by Expo Riyadh and its impact...'. The use of the conjunction 'and' connects different aspects of the impact addressed by the Expo, effectively organizing the information presented.",
+        "discourse_type": "Informative",
+        "coherence_score": 9.0,
+        "named_entities": [
+          "Expo Riyadh",
+          "Kingdom's vision"
+        ],
+        "writing_style": "Formal"
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 56,
+          "engagement_rate": 0.005829082960341418,
+          "views_to_engagement_ratio": 171.55357142857142
+        },
+        "composition": {
+          "favorites_percent": 64.28571428571429,
+          "retweets_percent": 25.0,
+          "replies_percent": 1.7857142857142856,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 8.928571428571429
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 16,
+          "day": "Thursday",
+          "date": "2025-02-20"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1892570507842650439",
+      "language": "ar",
+      "type": "Retweet",
+      "author_name": "المنتدى السعودي للإعلام",
+      "author_username": "saudi_mf",
+      "engagement_metrics": {
+        "bookmark_count": 5,
+        "favorite_count": 36,
+        "retweet_count": 14,
+        "reply_count": 1,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-20 16:42:25",
+      "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+      "hashtags": "#Saudi_Media_Forum"
+    },
+    {
+      "id": 1894822199858761761,
+      "original_text": "خلال تحدث سعادة المهندس عبدالعزيز الغنام المدير العام لمكتب دعم عن المبادرات التي ستجعل المعرض منصة عالمية للابتكار والتعاون مشيرا إلى أثره الاقتصادي والاجتماعي كما رفع شكره للقيادة الرشيدة على دعمها المستمر مؤكدا أنه أساس مستقبل المعرض وأشاد بالثقة العالمية التي ترسخ مكانة المملكة دوليا",
+      "translated_text": "During his speech, Eng. Abdulaziz Al-Ghannam, the Director General of the Support Office, talked about the initiatives that will make the exhibition a global platform for innovation and collaboration, highlighting its economic and social impact. He also expressed his gratitude to the wise leadership for their continuous support, emphasizing that it is the foundation of the exhibition's future. He praised the global confidence that reinforces the Kingdom's international standing.",
+      "sentiment_analysis": {
+        "sentiment": "Positive",
+        "confidence": 0.93
+      },
+      "emotion_analysis": {
+        "fear": 0.07692307692307693,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.07692307692307693,
+        "surprise": 0.0,
+        "positive": 0.6153846153846154,
+        "negative": 0.0,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.23076923076923078
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The tweet is grammatically correct, using complex sentences effectively to communicate detailed information. It employs a mix of past and present tense appropriately to describe the events and statements during the speech. The use of commas separates clauses and lists, helping to maintain clarity and flow.",
+        "discourse_type": "The discourse type is informative, as it summarizes the key points of a speech by a notable figure, focusing on future initiatives and expressions of gratitude.",
+        "coherence_score": 9.5,
+        "named_entities": [
+          "Eng. Abdulaziz Al-Ghannam",
+          "Director General of the Support Office",
+          "Kingdom"
+        ],
+        "writing_style": "The writing style is formal and structured, typical of reporting a speech or event. It uses precise language to convey the significance of the speaker's message and the broader context of international collaboration and leadership support."
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 38,
+          "engagement_rate": 0.005296905492054642,
+          "views_to_engagement_ratio": 188.78947368421052
+        },
+        "composition": {
+          "favorites_percent": 60.526315789473685,
+          "retweets_percent": 26.31578947368421,
+          "replies_percent": 5.263157894736842,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 7.894736842105263
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 21,
+          "day": "Wednesday",
+          "date": "2025-02-26"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1894822199858761761",
+      "language": "ar",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 3,
+        "favorite_count": 23,
+        "retweet_count": 10,
+        "reply_count": 2,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-26 21:49:51",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "hashtags": "#Saudi_Media_Forum, #Riyadh_Expo2030"
+    },
+    {
+      "id": 1892167999408497133,
+      "original_text": "The specialized seminars achieved full alignment on technical and organizational aspects engaging in detailed discussions about the Riyadh registration dossier chapters and the international agreement",
+      "translated_text": "The specialized seminars achieved full alignment on technical and organizational aspects engaging in detailed discussions about the Riyadh registration dossier chapters and the international agreement",
+      "sentiment_analysis": {
+        "sentiment": "Neutral",
+        "confidence": 0.85
+      },
+      "emotion_analysis": {
+        "fear": 0.0,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.3333333333333333,
+        "surprise": 0.0,
+        "positive": 0.5,
+        "negative": 0.0,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.16666666666666666
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The sentence is a complex sentence with a main clause 'The specialized seminars achieved full alignment' and a subordinate clause 'engaging in detailed discussions about the Riyadh registration dossier chapters and the international agreement.' The participial phrase 'engaging in detailed discussions about...' specifies how the alignment was achieved. The sentence lacks a conjunction between the two main ideas due to the use of the participial phrase.",
+        "discourse_type": "Informative",
+        "coherence_score": 7.5,
+        "named_entities": [
+          "Riyadh"
+        ],
+        "writing_style": "Formal"
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 25,
+          "engagement_rate": 0.0036829699469652327,
+          "views_to_engagement_ratio": 271.52
+        },
+        "composition": {
+          "favorites_percent": 84.0,
+          "retweets_percent": 12.0,
+          "replies_percent": 0.0,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 4.0
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 14,
+          "day": "Wednesday",
+          "date": "2025-02-19"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1892167999408497133",
+      "language": "en",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 1,
+        "favorite_count": 21,
+        "retweet_count": 3,
+        "reply_count": 0,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-19 14:03:00",
+      "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+      "hashtags": "#Expo2030"
+    },
+    {
+      "id": 1892579383636037666,
+      "original_text": "مع اكتمال ورش العمل المتخصصة لإنجاز ملف التسجيل يعمل فريق بوتيره متسارعة لإنهاء ملف التسجيل الدولي من جانبه أكد الأمين العام للمكتب الدولي للمعارض أن الجهود المبذولة منذ أكثر من عام ونصف وبعد فوز المملكة باستضافة إكسبو مستمرة بالتعاون بين الهيئة الملكية لمدينة الرياض والشركة المنظمة لإكسبو لضمان إنهاء ملف التسجيل على أكمل وجه",
+      "translated_text": "With the completion of specialized workshops to accomplish the registration file, the team is working at an accelerated pace to finalize the international registration file. The Secretary-General of the Bureau International des Expositions confirmed that the efforts made for more than a year and a half, following the Kingdom's winning bid to host Expo, continue in cooperation between the Royal Commission for Riyadh City and the organizing company for Expo to ensure the registration file is completed to perfection.",
+      "sentiment_analysis": {
+        "sentiment": "positive",
+        "confidence": 0.9
+      },
+      "emotion_analysis": {
+        "fear": 0.0,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.23076923076923078,
+        "surprise": 0.07692307692307693,
+        "positive": 0.3076923076923077,
+        "negative": 0.0,
+        "sadness": 0.038461538461538464,
+        "disgust": 0.038461538461538464,
+        "joy": 0.15384615384615385,
+        "anticipation": 0.15384615384615385
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The tweet is grammatically correct. It uses complete sentences and complex sentence structures effectively, incorporating multiple clauses to convey detailed information. The sentence structure includes a main clause followed by subordinate clauses, which provide additional context and detail. The use of the present continuous tense (\"is working\", \"continue\") illustrates ongoing actions, and the past perfect (\"have been made\") refers to efforts that started in the past and continue to influence the present.",
+        "discourse_type": "Informational",
+        "coherence_score": 8.5,
+        "named_entities": [
+          "Secretary-General of the Bureau International des Expositions",
+          "Kingdom",
+          "Royal Commission for Riyadh City",
+          "Expo"
+        ],
+        "writing_style": "Formal"
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 39,
+          "engagement_rate": 0.0066090493136756485,
+          "views_to_engagement_ratio": 151.30769230769232
+        },
+        "composition": {
+          "favorites_percent": 71.7948717948718,
+          "retweets_percent": 15.384615384615385,
+          "replies_percent": 2.564102564102564,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 10.256410256410255
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 17,
+          "day": "Thursday",
+          "date": "2025-02-20"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1892579383636037666",
+      "language": "ar",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 4,
+        "favorite_count": 28,
+        "retweet_count": 6,
+        "reply_count": 1,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-20 17:17:42",
+      "source": "<a href=\"http://twitter.com/download/iphone\" rel=\"nofollow\">Twitter for iPhone</a>",
+      "hashtags": "#Riyadh_Expo2030"
+    },
+    {
+      "id": 1892167245255630872,
+      "original_text": "شهدت ورش العمل المتخصصة لتقديم ملف تسجيل توافقا تاما على الجوانب الفنية والتنظيمية كما تم مناقشة فصول ملف التسجيل والاتفاقية الدولية",
+      "translated_text": "The specialized workshops for submitting the registration file witnessed complete agreement on the technical and organizational aspects, and the chapters of the registration file and the international agreement were also discussed.",
+      "sentiment_analysis": {
+        "sentiment": "Neutral",
+        "confidence": 0.88
+      },
+      "emotion_analysis": {
+        "fear": 0.0,
+        "anger": 0.0,
+        "anticip": 0.0,
+        "trust": 0.5,
+        "surprise": 0.0,
+        "positive": 0.5,
+        "negative": 0.0,
+        "sadness": 0.0,
+        "disgust": 0.0,
+        "joy": 0.0
+      },
+      "grammar_analysis": {
+        "grammatical_analysis": "The sentence correctly uses past tense verbs to report an event: 'witnessed,' 'were discussed.' It properly employs a conjunction to join clauses: 'and.' The parallel structure in 'technical and organizational aspects' suggests a balanced view. The use of 'also' indicates an additional point being made, maintaining a logical progression of ideas.",
+        "discourse_type": "Informative",
+        "coherence_score": 8.0,
+        "named_entities": [
+          "registration file",
+          "international agreement"
+        ],
+        "writing_style": "Formal"
+      },
+      "engagement_analysis": {
+        "metrics": {
+          "total_engagement": 32,
+          "engagement_rate": 0.005057689268215584,
+          "views_to_engagement_ratio": 197.71875
+        },
+        "composition": {
+          "favorites_percent": 81.25,
+          "retweets_percent": 15.625,
+          "replies_percent": 3.125,
+          "quotes_percent": 0.0,
+          "bookmarks_percent": 0.0
+        }
+      },
+      "temporal_analysis": {
+        "posting_time": {
+          "hour": 14,
+          "day": "Wednesday",
+          "date": "2025-02-19"
+        },
+        "trend_metrics": {
+          "part_of_trend": false,
+          "trend_volume": "low"
+        }
+      },
+      "tweet_url": "https://x.com/Expo2030Riyadh/status/1892167245255630872",
+      "language": "ar",
+      "type": "Tweet",
+      "author_name": "Expo 2030 Riyadh",
+      "author_username": "Expo2030Riyadh",
+      "engagement_metrics": {
+        "bookmark_count": 0,
+        "favorite_count": 26,
+        "retweet_count": 5,
+        "reply_count": 1,
+        "quote_count": 0
+      },
+      "created_at": "2025-02-19 14:00:00",
+      "source": "<a href=\"https://mobile.twitter.com\" rel=\"nofollow\">Twitter Web App</a>",
+      "hashtags": "#الرياض_إكسبو2030"
+    }
+  ]
+}
