@@ -2,9 +2,7 @@ import tweetsData from "../../tweets.json";
 import patternsData from "../../patterns.json";
 
 // Filter tweets to only include English language tweets
-export const tweets = tweetsData.tweets.filter(
-  (tweet) => tweet.language === "en"
-);
+export const tweets = tweetsData.tweets;
 export const totalTweets = tweets.length;
 
 // Define types for sentiment counts

@@ -8,6 +8,7 @@ export const Explorer = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSentiment, setSelectedSentiment] = useState("all");
   const [selectedLanguage, setSelectedLanguage] = useState("all");
+  const [displayCount, setDisplayCount] = useState(10);
 
   // Filter tweets based on search and filters
   const filteredTweets = tweets.filter((tweet) => {
@@ -49,7 +50,7 @@ export const Explorer = () => {
   const totalFilteredTweets = filteredTweets.length;
 
   // Calculate top hashtags
-  const hashtagCounts = {};
+  const hashtagCounts: Record<string, number> = {};
   filteredTweets.forEach((tweet) => {
     if (tweet.hashtags) {
       tweet.hashtags.split(",").forEach((tag) => {
@@ -59,7 +60,12 @@ export const Explorer = () => {
     }
   });
 
-  const topHashtags = Object.entries(hashtagCounts)
+  interface HashtagCount {
+    tag: string;
+    count: number;
+  }
+
+  const topHashtags: HashtagCount[] = Object.entries(hashtagCounts)
     .map(([tag, count]) => ({ tag, count }))
     .sort((a, b) => b.count - a.count)
     .slice(0, 5);
@@ -254,7 +260,7 @@ export const Explorer = () => {
           </CardHeader>
           <CardContent>
             <div className="flex flex-wrap gap-2 justify-center">
-              {languages.slice(0, 6).map((lang, index) => {
+              {languages.slice(0, 6).map((lang) => {
                 const count = filteredTweets.filter(
                   (tweet) => tweet.language === lang
                 ).length;
@@ -331,7 +337,7 @@ export const Explorer = () => {
             Results ({filteredTweets.length} tweets)
           </CardTitle>
           <div className="text-sm text-gray-500">
-            Showing {Math.min(10, filteredTweets.length)} of{" "}
+            Showing {Math.min(displayCount, filteredTweets.length)} of{" "}
             {filteredTweets.length}
           </div>
         </CardHeader>
@@ -348,7 +354,7 @@ export const Explorer = () => {
                 </p>
               </div>
             ) : (
-              filteredTweets.slice(0, 10).map((tweet) => (
+              filteredTweets.slice(0, displayCount).map((tweet) => (
                 <div key={tweet.id} className="border-b border-orange-100 pb-4">
                   <div className="flex justify-between items-start mb-2">
                     <div className="font-bold flex items-center">
@@ -363,16 +369,23 @@ export const Explorer = () => {
                   </div>
 
                   <div className="bg-orange-50 p-3 rounded-lg mb-2">
-                    <p className="mb-2">{tweet.original_text}</p>
+                    {/* Show English version as main text */}
+                    <p className="mb-2">
+                      {tweet.language === "English"
+                        ? tweet.original_text
+                        : tweet.translated_text}
+                    </p>
 
-                    {tweet.original_text !== tweet.translated_text && (
-                      <p className="mb-2 text-gray-600 italic text-sm border-t border-orange-100 pt-2">
-                        <span className="font-medium text-orange-800">
-                          Translation:
-                        </span>{" "}
-                        {tweet.translated_text}
-                      </p>
-                    )}
+                    {/* Show non-English version below only if it's different from what's already displayed */}
+                    {tweet.language !== "English" &&
+                      tweet.original_text !== tweet.translated_text && (
+                        <p className="mb-2 text-gray-600 italic text-sm border-t border-orange-100 pt-2">
+                          <span className="font-medium text-orange-800">
+                            Original ({tweet.language}):
+                          </span>{" "}
+                          {tweet.original_text}
+                        </p>
+                      )}
                   </div>
 
                   <div className="flex flex-wrap gap-2 mt-2">
@@ -425,11 +438,12 @@ export const Explorer = () => {
               ))
             )}
 
-            {filteredTweets.length > 10 && (
+            {filteredTweets.length > displayCount && (
               <div className="text-center pt-4">
                 <Button
                   variant="outline"
                   className="bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100"
+                  onClick={() => setDisplayCount(displayCount + 10)}
                 >
                   Load More
                 </Button>
