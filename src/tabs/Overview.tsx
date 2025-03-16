@@ -52,13 +52,13 @@ export const Overview = ({ tweets, patterns }: OverviewProps) => {
 
   // Process daily activity data
   const dailyActivity = {
-    M: 0,
-    T: 0,
-    W: 0,
-    T2: 0,
-    F: 0,
-    S: 0,
-    S2: 0,
+    Mon: 0,
+    Tue: 0,
+    Wed: 0,
+    Thu: 0,
+    Fri: 0,
+    Sat: 0,
+    Sun: 0,
   };
 
   // Fill with data from patterns
@@ -72,25 +72,25 @@ export const Overview = ({ tweets, patterns }: OverviewProps) => {
     ).forEach(([day, count]: [string, any]) => {
       switch (day) {
         case "Monday":
-          dailyActivity["M"] = count;
+          dailyActivity["Mon"] = count;
           break;
         case "Tuesday":
-          dailyActivity["T"] = count;
+          dailyActivity["Tue"] = count;
           break;
         case "Wednesday":
-          dailyActivity["W"] = count;
+          dailyActivity["Wed"] = count;
           break;
         case "Thursday":
-          dailyActivity["T2"] = count;
+          dailyActivity["Thu"] = count;
           break;
         case "Friday":
-          dailyActivity["F"] = count;
+          dailyActivity["Fri"] = count;
           break;
         case "Saturday":
-          dailyActivity["S"] = count;
+          dailyActivity["Sat"] = count;
           break;
         case "Sunday":
-          dailyActivity["S2"] = count;
+          dailyActivity["Sun"] = count;
           break;
       }
     });
@@ -98,7 +98,7 @@ export const Overview = ({ tweets, patterns }: OverviewProps) => {
 
   const dailyActivityData = Object.entries(dailyActivity).map(
     ([day, count]) => ({
-      day: day.replace("2", ""),
+      day,
       count,
     })
   );
@@ -157,13 +157,13 @@ export const Overview = ({ tweets, patterns }: OverviewProps) => {
   }
 
   const emotionBars = [
-    { name: "M", value: avgEmotions.joy * 100 },
-    { name: "T", value: avgEmotions.trust * 100 },
-    { name: "W", value: avgEmotions.fear * 100 },
-    { name: "T", value: avgEmotions.surprise * 100 },
-    { name: "F", value: avgEmotions.sadness * 100 },
-    { name: "S", value: avgEmotions.disgust * 100 },
-    { name: "S", value: avgEmotions.anger * 100 },
+    { name: "M", value: avgEmotions.joy },
+    { name: "T", value: avgEmotions.trust },
+    { name: "W", value: avgEmotions.fear },
+    { name: "T", value: avgEmotions.surprise },
+    { name: "F", value: avgEmotions.sadness },
+    { name: "S", value: avgEmotions.disgust },
+    { name: "S", value: avgEmotions.anger },
   ];
 
   // Goal data
@@ -242,28 +242,29 @@ export const Overview = ({ tweets, patterns }: OverviewProps) => {
                 data={dailyActivityData}
                 margin={{ top: 20, right: 0, left: 0, bottom: 0 }}
               >
-                <XAxis dataKey="day" axisLine={false} tickLine={false} />
+                <XAxis dataKey="day" axisLine={false} tickLine={false} hide />
                 <YAxis hide domain={[0, "dataMax"]} />
                 <Tooltip
                   formatter={(value) => [`${value} tweets`, "Count"]}
-                  labelFormatter={(label) => `Day: ${label}`}
+                  labelFormatter={() => `Daily Tweet Count`}
                 />
                 <Bar
                   dataKey="count"
                   fill="#ff5722"
                   radius={[10, 10, 0, 0]}
                   barSize={30}
+                  isAnimationActive={false}
                 />
               </BarChart>
             </ResponsiveContainer>
             <div className="flex justify-between text-xs text-gray-500 mt-2">
-              <div>M</div>
-              <div>T</div>
-              <div>W</div>
-              <div>T</div>
-              <div>F</div>
-              <div>S</div>
-              <div>S</div>
+              <div>Mon</div>
+              <div>Tue</div>
+              <div>Wed</div>
+              <div>Thu</div>
+              <div>Fri</div>
+              <div>Sat</div>
+              <div>Sun</div>
             </div>
           </CardContent>
         </Card>
