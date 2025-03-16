@@ -13,9 +13,13 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import { tweets } from "../utils/data";
 
-export const Temporal = () => {
+interface TemporalProps {
+  tweets: any[];
+  patterns: any;
+}
+
+export const Temporal = ({ tweets, patterns }: TemporalProps) => {
   // Process data for time of day distribution
   const hourlyData = Array(24)
     .fill(0)

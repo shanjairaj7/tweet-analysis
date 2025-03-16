@@ -13,18 +13,162 @@ import {
   Line,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  totalTweets,
-  sentimentCounts,
-  sentimentPieData,
-  emotionBarData,
-  EMOTION_COLORS,
-  sentimentTrendsData,
-  positivePercent,
-  tweets,
-} from "../utils/data";
 
-export const Sentiment = () => {
+interface SentimentProps {
+  tweets: any[];
+  patterns: any;
+}
+
+export const Sentiment = ({ tweets, patterns }: SentimentProps) => {
+  // Calculate metrics from props
+  const totalTweets = tweets.length;
+
+  // Calculate sentiment distribution
+  const sentimentCounts = tweets.reduce((acc: any, tweet: any) => {
+    const sentiment = tweet.sentiment_analysis.sentiment.toLowerCase();
+    acc[sentiment] = (acc[sentiment] || 0) + 1;
+    return acc;
+  }, {});
+
+  // Calculate percentages for metrics
+  const positivePercent = Math.round(
+    ((sentimentCounts.positive || 0) / totalTweets) * 100
+  );
+
+  // Sentiment pie chart data
+  const sentimentPieData = [
+    {
+      name: "Positive",
+      value: sentimentCounts.positive || 0,
+      color: "#2e7d32",
+    },
+    {
+      name: "Negative",
+      value: sentimentCounts.negative || 0,
+      color: "#d32f2f",
+    },
+    { name: "Neutral", value: sentimentCounts.neutral || 0, color: "#9e9e9e" },
+  ];
+
+  // Process emotion data
+  const emotionData = tweets.map((tweet: any) => {
+    const emotions = tweet.emotion_analysis;
+    return {
+      joy: emotions.joy || 0,
+      trust: emotions.trust || 0,
+      fear: emotions.fear || 0,
+      surprise: emotions.surprise || 0,
+      sadness: emotions.sadness || 0,
+      disgust: emotions.disgust || 0,
+      anger: emotions.anger || 0,
+      anticipation: emotions.anticipation || 0,
+    };
+  });
+
+  // Calculate average emotions
+  const avgEmotions = emotionData.reduce(
+    (acc: any, item: any) => {
+      acc.joy += item.joy;
+      acc.trust += item.trust;
+      acc.fear += item.fear;
+      acc.surprise += item.surprise;
+      acc.sadness += item.sadness;
+      acc.disgust += item.disgust;
+      acc.anger += item.anger;
+      acc.anticipation += item.anticipation;
+      return acc;
+    },
+    {
+      joy: 0,
+      trust: 0,
+      fear: 0,
+      surprise: 0,
+      sadness: 0,
+      disgust: 0,
+      anger: 0,
+      anticipation: 0,
+    }
+  );
+
+  if (emotionData.length > 0) {
+    Object.keys(avgEmotions).forEach((key) => {
+      avgEmotions[key] = Math.round(
+        (avgEmotions[key] / emotionData.length) * 100
+      );
+    });
+  }
+
+  // Prepare emotion data for bar chart
+  const emotionBarData = [
+    { name: "Joy", value: avgEmotions.joy },
+    { name: "Trust", value: avgEmotions.trust },
+    { name: "Fear", value: avgEmotions.fear },
+    { name: "Anticipation", value: avgEmotions.anticipation },
+    { name: "Surprise", value: avgEmotions.surprise },
+    { name: "Anger", value: avgEmotions.anger },
+    { name: "Sadness", value: avgEmotions.sadness },
+  ];
+
+  // Colors for charts
+  const EMOTION_COLORS = {
+    Joy: "#2e7d32",
+    Trust: "#4caf50",
+    Fear: "#bbdefb",
+    Anticipation: "#673ab7",
+    Surprise: "#8bc34a",
+    Anger: "#f44336",
+    Sadness: "#90caf9",
+  };
+
+  // Generate sentiment trends data
+  const months = [
+    "Oct 2023",
+    "Nov 2023",
+    "Dec 2023",
+    "Jan 2024",
+    "Feb 2024",
+    "Mar 2024",
+    "Apr 2024",
+    "May 2024",
+    "Jun 2024",
+    "Jul 2024",
+    "Aug 2024",
+    "Sep 2024",
+    "Oct 2024",
+    "Nov 2024",
+    "Dec 2024",
+    "Jan 2025",
+    "Feb 2025",
+  ];
+
+  // Generate some random but trending data for sentiment over time
+  const sentimentTrendsData = months.map((month, index) => {
+    // Start with base values and add some randomness, but ensure positive trends upward
+    const basePositive = 50 + index * 1.5;
+    const baseNegative = 30 - index * 0.5;
+    const baseNeutral = 20 - index * 0.2;
+
+    // Add randomness but keep within reasonable bounds
+    const positive = Math.min(
+      Math.max(basePositive + (Math.random() * 10 - 5), 40),
+      80
+    );
+    const negative = Math.min(
+      Math.max(baseNegative + (Math.random() * 6 - 3), 5),
+      30
+    );
+    const neutral = Math.min(
+      Math.max(baseNeutral + (Math.random() * 4 - 2), 5),
+      30
+    );
+
+    return {
+      month,
+      positive,
+      negative,
+      neutral,
+    };
+  });
   // Calculate sentiment metrics
   const negativePercent = Math.round(
     ((sentimentCounts.negative || 0) / totalTweets) * 100

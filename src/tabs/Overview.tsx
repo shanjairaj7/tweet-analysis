@@ -10,25 +10,180 @@ import {
   YAxis,
 } from "recharts";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  totalTweets,
-  sentimentCounts,
-  dailyActivityData,
-  emotionBars,
-  goalData,
-  positivePercent,
-  avgEngagement,
-  viralTweets,
-  engagementPercent,
-  viralPercent,
-  tweets,
-} from "../utils/data";
 
-export const Overview = () => {
+interface OverviewProps {
+  tweets: any[];
+  patterns: any;
+}
+
+export const Overview = ({ tweets, patterns }: OverviewProps) => {
+  // Calculate metrics from props
+  const totalTweets = tweets.length;
+
+  // Calculate sentiment distribution
+  const sentimentCounts = tweets.reduce((acc: any, tweet: any) => {
+    const sentiment = tweet.sentiment_analysis.sentiment.toLowerCase();
+    acc[sentiment] = (acc[sentiment] || 0) + 1;
+    return acc;
+  }, {});
+
+  // Calculate percentages for metrics
+  const positivePercent = Math.round(
+    ((sentimentCounts.positive || 0) / totalTweets) * 100
+  );
+
+  // Calculate average engagement
+  const avgEngagement =
+    tweets.reduce((sum: number, tweet: any) => {
+      return sum + tweet.engagement_analysis.metrics.total_engagement;
+    }, 0) / totalTweets;
+
+  // Count viral tweets
+  const viralTweets = tweets.filter(
+    (tweet: any) => tweet.engagement_analysis.metrics.total_engagement > 30
+  ).length;
+
+  const engagementPercent = Math.min(
+    Math.round((avgEngagement / 100) * 100),
+    200
+  );
+
+  const viralPercent = Math.round((viralTweets / totalTweets) * 100);
+
+  // Process daily activity data
+  const dailyActivity = {
+    M: 0,
+    T: 0,
+    W: 0,
+    T2: 0,
+    F: 0,
+    S: 0,
+    S2: 0,
+  };
+
+  // Fill with data from patterns
+  if (
+    patterns &&
+    patterns.temporal_analysis &&
+    patterns.temporal_analysis.volume_patterns
+  ) {
+    Object.entries(
+      patterns.temporal_analysis.volume_patterns.daily_distribution
+    ).forEach(([day, count]: [string, any]) => {
+      switch (day) {
+        case "Monday":
+          dailyActivity["M"] = count;
+          break;
+        case "Tuesday":
+          dailyActivity["T"] = count;
+          break;
+        case "Wednesday":
+          dailyActivity["W"] = count;
+          break;
+        case "Thursday":
+          dailyActivity["T2"] = count;
+          break;
+        case "Friday":
+          dailyActivity["F"] = count;
+          break;
+        case "Saturday":
+          dailyActivity["S"] = count;
+          break;
+        case "Sunday":
+          dailyActivity["S2"] = count;
+          break;
+      }
+    });
+  }
+
+  const dailyActivityData = Object.entries(dailyActivity).map(
+    ([day, count]) => ({
+      day: day.replace("2", ""),
+      count,
+    })
+  );
+
+  // Process emotion data
+  const emotionData = tweets.map((tweet: any) => {
+    const emotions = tweet.emotion_analysis;
+    const total = Object.values(emotions).reduce(
+      (sum: number, val: any) => sum + val,
+      0
+    );
+    return {
+      joy: emotions.joy || 0,
+      trust: emotions.trust || 0,
+      fear: emotions.fear || 0,
+      surprise: emotions.surprise || 0,
+      sadness: emotions.sadness || 0,
+      disgust: emotions.disgust || 0,
+      anger: emotions.anger || 0,
+      anticipation: emotions.anticipation || 0,
+      total,
+    };
+  });
+
+  // Calculate average emotions
+  const avgEmotions = emotionData.reduce(
+    (acc: any, item: any) => {
+      acc.joy += item.joy;
+      acc.trust += item.trust;
+      acc.fear += item.fear;
+      acc.surprise += item.surprise;
+      acc.sadness += item.sadness;
+      acc.disgust += item.disgust;
+      acc.anger += item.anger;
+      acc.anticipation += item.anticipation;
+      return acc;
+    },
+    {
+      joy: 0,
+      trust: 0,
+      fear: 0,
+      surprise: 0,
+      sadness: 0,
+      disgust: 0,
+      anger: 0,
+      anticipation: 0,
+    }
+  );
+
+  if (emotionData.length > 0) {
+    Object.keys(avgEmotions).forEach((key) => {
+      avgEmotions[key] = Math.round(
+        (avgEmotions[key] / emotionData.length) * 100
+      );
+    });
+  }
+
+  const emotionBars = [
+    { name: "M", value: avgEmotions.joy * 100 },
+    { name: "T", value: avgEmotions.trust * 100 },
+    { name: "W", value: avgEmotions.fear * 100 },
+    { name: "T", value: avgEmotions.surprise * 100 },
+    { name: "F", value: avgEmotions.sadness * 100 },
+    { name: "S", value: avgEmotions.disgust * 100 },
+    { name: "S", value: avgEmotions.anger * 100 },
+  ];
+
+  // Goal data
+  const goalData = [
+    {
+      name: "Positive",
+      value: sentimentCounts.positive || 0,
+      color: "#ff5722",
+    },
+    { name: "Neutral", value: sentimentCounts.neutral || 0, color: "#9c27b0" },
+    {
+      name: "Negative",
+      value: sentimentCounts.negative || 0,
+      color: "#000000",
+    },
+  ];
+
   return (
     <>
       <h1 className="text-4xl font-bold mb-8">Tweet Overview</h1>
-
       {/* Top metrics */}
       <div className="flex justify-between mb-8">
         <div className="flex items-center border-l-4 border-orange-500 pl-4">
@@ -75,6 +230,7 @@ export const Overview = () => {
         <Card className="bg-white rounded-lg shadow">
           <CardHeader>
             <CardTitle className="text-lg">Tweet Activity</CardTitle>
+
             <div className="text-3xl font-bold">
               {totalTweets}{" "}
               <span className="text-sm font-normal text-gray-500">Tweets</span>
@@ -207,7 +363,6 @@ export const Overview = () => {
           </CardContent>
         </Card>
       </div>
-
       {/* Bottom section */}
       <div className="grid grid-cols-2 gap-6">
         {/* Language Distribution */}

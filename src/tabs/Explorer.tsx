@@ -2,9 +2,13 @@ import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { tweets } from "../utils/data";
 
-export const Explorer = () => {
+interface ExplorerProps {
+  tweets: any[];
+  patterns: any;
+}
+
+export const Explorer = ({ tweets, patterns }: ExplorerProps) => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSentiment, setSelectedSentiment] = useState("all");
   const [selectedLanguage, setSelectedLanguage] = useState("all");
@@ -53,7 +57,7 @@ export const Explorer = () => {
   const hashtagCounts: Record<string, number> = {};
   filteredTweets.forEach((tweet) => {
     if (tweet.hashtags) {
-      tweet.hashtags.split(",").forEach((tag) => {
+      tweet.hashtags.split(",").forEach((tag: string) => {
         const trimmedTag = tag.trim();
         hashtagCounts[trimmedTag] = (hashtagCounts[trimmedTag] || 0) + 1;
       });
@@ -410,14 +414,16 @@ export const Explorer = () => {
                       {tweet.engagement_analysis.metrics.total_engagement}
                     </span>
                     {tweet.hashtags &&
-                      tweet.hashtags.split(",").map((tag, i) => (
-                        <span
-                          key={i}
-                          className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full"
-                        >
-                          {tag.trim()}
-                        </span>
-                      ))}
+                      tweet.hashtags
+                        .split(",")
+                        .map((tag: string, i: number) => (
+                          <span
+                            key={i}
+                            className="px-2 py-1 bg-purple-100 text-purple-800 text-xs rounded-full"
+                          >
+                            {tag.trim()}
+                          </span>
+                        ))}
                   </div>
 
                   <div className="mt-3 text-xs text-gray-500 flex items-center">

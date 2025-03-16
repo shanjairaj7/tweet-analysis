@@ -1,5 +1,4 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { tweets } from "../utils/data";
 import {
   BarChart,
   Bar,
@@ -12,7 +11,12 @@ import {
   Cell,
 } from "recharts";
 
-export const Linguistics = () => {
+interface LinguisticsProps {
+  tweets: any[];
+  patterns: any;
+}
+
+export const Linguistics = ({ tweets, patterns }: LinguisticsProps) => {
   // Define types for data structures
   type DataItem = {
     name: string;

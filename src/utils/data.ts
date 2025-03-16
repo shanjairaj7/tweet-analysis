@@ -1,11 +1,102 @@
-import tweetsData from "../../tweets.json";
-import patternsData from "../../patterns.json";
+// Define types for the data structure
+export interface Tweet {
+  id: string;
+  text: string;
+  created_at: string;
+  sentiment_analysis: {
+    sentiment: string;
+    confidence: number;
+  };
+  engagement_analysis: {
+    metrics: {
+      likes: number;
+      retweets: number;
+      replies: number;
+      total_engagement: number;
+    };
+  };
+  emotion_analysis: {
+    joy: number;
+    trust: number;
+    fear: number;
+    surprise: number;
+    sadness: number;
+    disgust: number;
+    anger: number;
+    anticipation: number;
+    [key: string]: number;
+  };
+  linguistic_analysis: {
+    entities: Array<{
+      text: string;
+      type: string;
+    }>;
+    hashtags: string[];
+    keywords: string[];
+  };
+  [key: string]: any;
+}
 
-// Filter tweets to only include English language tweets
-export const tweets = tweetsData.tweets;
-export const totalTweets = tweets.length;
+export interface Patterns {
+  temporal_analysis: {
+    volume_patterns: {
+      daily_distribution: {
+        [key: string]: number;
+      };
+      hourly_distribution?: {
+        [key: string]: number;
+      };
+    };
+  };
+  [key: string]: any;
+}
 
-// Define types for sentiment counts
+// API endpoints
+const TWEETS_API = "https://twitter-analysis-8vun.onrender.com/api/tweets";
+const PATTERNS_API = "https://twitter-analysis-8vun.onrender.com/api/patterns";
+
+// State to store fetched data
+let tweetsData: { tweets: Tweet[] } = { tweets: [] };
+let patternsData: Patterns = {
+  temporal_analysis: { volume_patterns: { daily_distribution: {} } },
+};
+let dataLoaded = false;
+
+// Function to fetch data from APIs
+export const fetchData = async (): Promise<{
+  tweetsData: { tweets: Tweet[] };
+  patternsData: Patterns;
+}> => {
+  try {
+    // Fetch tweets data
+    const tweetsResponse = await fetch(TWEETS_API);
+    tweetsData = await tweetsResponse.json();
+
+    // Fetch patterns data
+    const patternsResponse = await fetch(PATTERNS_API);
+    patternsData = await patternsResponse.json();
+
+    dataLoaded = true;
+    console.log("Data loaded successfully from APIs");
+
+    // Recalculate all derived data
+    calculateDerivedData();
+
+    return { tweetsData, patternsData };
+  } catch (error) {
+    console.error("Error fetching data from APIs:", error);
+    return { tweetsData, patternsData };
+  }
+};
+
+// Check if data is loaded
+export const isDataLoaded = () => dataLoaded;
+
+// Tweets data
+export let tweets: Tweet[] = tweetsData.tweets;
+export let totalTweets = tweets.length;
+
+// Define types for sentiment counts and emotions
 interface SentimentCounts {
   positive?: number;
   negative?: number;
@@ -13,100 +104,6 @@ interface SentimentCounts {
   [key: string]: number | undefined;
 }
 
-// Calculate sentiment distribution
-export const sentimentCounts: SentimentCounts = tweets.reduce(
-  (acc: SentimentCounts, tweet) => {
-    const sentiment = tweet.sentiment_analysis.sentiment.toLowerCase();
-    acc[sentiment] = (acc[sentiment] || 0) + 1;
-    return acc;
-  },
-  {}
-);
-
-export const sentimentData = Object.entries(sentimentCounts).map(
-  ([name, value]) => ({
-    name: name.charAt(0).toUpperCase() + name.slice(1),
-    value,
-  })
-);
-
-// Calculate average engagement
-export const avgEngagement =
-  tweets.reduce((sum, tweet) => {
-    return sum + tweet.engagement_analysis.metrics.total_engagement;
-  }, 0) / totalTweets;
-
-// Count viral tweets
-export const viralTweets = tweets.filter(
-  (tweet) => tweet.engagement_analysis.metrics.total_engagement > 30
-).length;
-
-// Process daily activity data
-export const dailyActivity = {
-  M: 0,
-  T: 0,
-  W: 0,
-  T2: 0,
-  F: 0,
-  S: 0,
-  S2: 0,
-};
-
-// Fill with data from patterns - Note: patterns data might need to be filtered by language as well
-// For now, we'll use it as is since it's aggregated data
-Object.entries(
-  patternsData.temporal_analysis.volume_patterns.daily_distribution
-).forEach(([day, count]) => {
-  switch (day) {
-    case "Monday":
-      dailyActivity["M"] = count;
-      break;
-    case "Tuesday":
-      dailyActivity["T"] = count;
-      break;
-    case "Wednesday":
-      dailyActivity["W"] = count;
-      break;
-    case "Thursday":
-      dailyActivity["T2"] = count;
-      break;
-    case "Friday":
-      dailyActivity["F"] = count;
-      break;
-    case "Saturday":
-      dailyActivity["S"] = count;
-      break;
-    case "Sunday":
-      dailyActivity["S2"] = count;
-      break;
-  }
-});
-
-export const dailyActivityData = Object.entries(dailyActivity).map(
-  ([day, count]) => ({
-    day: day.replace("2", ""),
-    count,
-  })
-);
-
-// Process emotion data for heart rate chart
-export const emotionData = tweets.map((tweet) => {
-  const emotions = tweet.emotion_analysis;
-  const total = Object.values(emotions).reduce((sum, val) => sum + val, 0);
-  return {
-    joy: emotions.joy || 0,
-    trust: emotions.trust || 0,
-    fear: emotions.fear || 0,
-    surprise: emotions.surprise || 0,
-    sadness: emotions.sadness || 0,
-    disgust: emotions.disgust || 0,
-    anger: emotions.anger || 0,
-    anticipation: emotions.anticipation || 0,
-    total,
-  };
-});
-
-// Define type for emotions
 interface EmotionValues {
   joy: number;
   trust: number;
@@ -119,69 +116,254 @@ interface EmotionValues {
   [key: string]: number;
 }
 
-// Calculate average emotions
-export const avgEmotions: EmotionValues = emotionData.reduce(
-  (acc: EmotionValues, item) => {
-    acc.joy += item.joy;
-    acc.trust += item.trust;
-    acc.fear += item.fear;
-    acc.surprise += item.surprise;
-    acc.sadness += item.sadness;
-    acc.disgust += item.disgust;
-    acc.anger += item.anger;
-    acc.anticipation += item.anticipation;
-    return acc;
-  },
-  {
-    joy: 0,
-    trust: 0,
-    fear: 0,
-    surprise: 0,
-    sadness: 0,
-    disgust: 0,
-    anger: 0,
-    anticipation: 0,
+// Variables to store calculated data
+export let sentimentCounts: SentimentCounts = {};
+export let sentimentData: { name: string; value: number }[] = [];
+export let avgEngagement = 0;
+export let viralTweets = 0;
+export let dailyActivity = {
+  M: 0,
+  T: 0,
+  W: 0,
+  T2: 0,
+  F: 0,
+  S: 0,
+  S2: 0,
+};
+export let dailyActivityData: { day: string; count: number }[] = [];
+export let emotionData: {
+  joy: number;
+  trust: number;
+  fear: number;
+  surprise: number;
+  sadness: number;
+  disgust: number;
+  anger: number;
+  anticipation: number;
+  total: number;
+}[] = [];
+export let avgEmotions: EmotionValues = {
+  joy: 0,
+  trust: 0,
+  fear: 0,
+  surprise: 0,
+  sadness: 0,
+  disgust: 0,
+  anger: 0,
+  anticipation: 0,
+};
+export let emotionBarData: { name: string; value: number }[] = [];
+export let emotionBars: { name: string; value: number }[] = [];
+export let goalData: { name: string; value: number; color: string }[] = [];
+export let sentimentPieData: { name: string; value: number; color: string }[] =
+  [];
+export let positivePercent = 0;
+export let engagementPercent = 0;
+export let viralPercent = 0;
+
+// Function to calculate all derived data
+function calculateDerivedData() {
+  if (!dataLoaded || !tweetsData.tweets || tweetsData.tweets.length === 0) {
+    console.log("No data available yet");
+    return;
   }
-);
 
-Object.keys(avgEmotions).forEach((key) => {
-  avgEmotions[key] = Math.round((avgEmotions[key] / emotionData.length) * 100);
-});
+  // Update base data
+  tweets = tweetsData.tweets;
+  totalTweets = tweets.length;
 
-// Prepare emotion data for bar chart
-export const emotionBarData = [
-  { name: "Joy", value: avgEmotions.joy },
-  { name: "Trust", value: avgEmotions.trust },
-  { name: "Fear", value: avgEmotions.fear },
-  { name: "Anticipation", value: avgEmotions.anticipation },
-  { name: "Surprise", value: avgEmotions.surprise },
-  { name: "Anger", value: avgEmotions.anger },
-  { name: "Sadness", value: avgEmotions.sadness },
-];
+  // Calculate sentiment distribution
+  sentimentCounts = tweets.reduce((acc: SentimentCounts, tweet: Tweet) => {
+    const sentiment = tweet.sentiment_analysis.sentiment.toLowerCase();
+    acc[sentiment] = (acc[sentiment] || 0) + 1;
+    return acc;
+  }, {});
 
-export const emotionBars = [
-  { name: "M", value: avgEmotions.joy * 100 },
-  { name: "T", value: avgEmotions.trust * 100 },
-  { name: "W", value: avgEmotions.fear * 100 },
-  { name: "T", value: avgEmotions.surprise * 100 },
-  { name: "F", value: avgEmotions.sadness * 100 },
-  { name: "S", value: avgEmotions.disgust * 100 },
-  { name: "S", value: avgEmotions.anger * 100 },
-];
+  sentimentData = Object.entries(sentimentCounts).map(([name, value]) => ({
+    name: name.charAt(0).toUpperCase() + name.slice(1),
+    value: value || 0,
+  }));
 
-// Goal data
-export const goalData = [
-  { name: "Positive", value: sentimentCounts.positive || 0, color: "#ff5722" },
-  { name: "Neutral", value: sentimentCounts.neutral || 0, color: "#9c27b0" },
-  { name: "Negative", value: sentimentCounts.negative || 0, color: "#000000" },
-];
+  // Calculate average engagement
+  avgEngagement =
+    totalTweets > 0
+      ? tweets.reduce((sum: number, tweet: Tweet) => {
+          return sum + tweet.engagement_analysis.metrics.total_engagement;
+        }, 0) / totalTweets
+      : 0;
 
-// Sentiment pie chart data
-export const sentimentPieData = [
-  { name: "Positive", value: sentimentCounts.positive || 0, color: "#2e7d32" },
-  { name: "Negative", value: sentimentCounts.negative || 0, color: "#d32f2f" },
-  { name: "Neutral", value: sentimentCounts.neutral || 0, color: "#9e9e9e" },
-];
+  // Count viral tweets
+  viralTweets = tweets.filter(
+    (tweet: Tweet) => tweet.engagement_analysis.metrics.total_engagement > 30
+  ).length;
+
+  // Process daily activity data
+  dailyActivity = {
+    M: 0,
+    T: 0,
+    W: 0,
+    T2: 0,
+    F: 0,
+    S: 0,
+    S2: 0,
+  };
+
+  // Fill with data from patterns
+  if (
+    patternsData &&
+    patternsData.temporal_analysis &&
+    patternsData.temporal_analysis.volume_patterns
+  ) {
+    Object.entries(
+      patternsData.temporal_analysis.volume_patterns.daily_distribution
+    ).forEach(([day, count]: [string, any]) => {
+      switch (day) {
+        case "Monday":
+          dailyActivity["M"] = count;
+          break;
+        case "Tuesday":
+          dailyActivity["T"] = count;
+          break;
+        case "Wednesday":
+          dailyActivity["W"] = count;
+          break;
+        case "Thursday":
+          dailyActivity["T2"] = count;
+          break;
+        case "Friday":
+          dailyActivity["F"] = count;
+          break;
+        case "Saturday":
+          dailyActivity["S"] = count;
+          break;
+        case "Sunday":
+          dailyActivity["S2"] = count;
+          break;
+      }
+    });
+  }
+
+  dailyActivityData = Object.entries(dailyActivity).map(([day, count]) => ({
+    day: day.replace("2", ""),
+    count,
+  }));
+
+  // Process emotion data for heart rate chart
+  emotionData = tweets.map((tweet: Tweet) => {
+    const emotions = tweet.emotion_analysis;
+    const total = Object.values(emotions).reduce(
+      (sum: number, val: number) => sum + val,
+      0
+    );
+    return {
+      joy: emotions.joy || 0,
+      trust: emotions.trust || 0,
+      fear: emotions.fear || 0,
+      surprise: emotions.surprise || 0,
+      sadness: emotions.sadness || 0,
+      disgust: emotions.disgust || 0,
+      anger: emotions.anger || 0,
+      anticipation: emotions.anticipation || 0,
+      total,
+    };
+  });
+
+  // Calculate average emotions
+  avgEmotions = emotionData.reduce(
+    (acc: EmotionValues, item) => {
+      acc.joy += item.joy;
+      acc.trust += item.trust;
+      acc.fear += item.fear;
+      acc.surprise += item.surprise;
+      acc.sadness += item.sadness;
+      acc.disgust += item.disgust;
+      acc.anger += item.anger;
+      acc.anticipation += item.anticipation;
+      return acc;
+    },
+    {
+      joy: 0,
+      trust: 0,
+      fear: 0,
+      surprise: 0,
+      sadness: 0,
+      disgust: 0,
+      anger: 0,
+      anticipation: 0,
+    }
+  );
+
+  if (emotionData.length > 0) {
+    Object.keys(avgEmotions).forEach((key) => {
+      avgEmotions[key] = Math.round(
+        (avgEmotions[key] / emotionData.length) * 100
+      );
+    });
+  }
+
+  // Prepare emotion data for bar chart
+  emotionBarData = [
+    { name: "Joy", value: avgEmotions.joy },
+    { name: "Trust", value: avgEmotions.trust },
+    { name: "Fear", value: avgEmotions.fear },
+    { name: "Anticipation", value: avgEmotions.anticipation },
+    { name: "Surprise", value: avgEmotions.surprise },
+    { name: "Anger", value: avgEmotions.anger },
+    { name: "Sadness", value: avgEmotions.sadness },
+  ];
+
+  emotionBars = [
+    { name: "M", value: avgEmotions.joy * 100 },
+    { name: "T", value: avgEmotions.trust * 100 },
+    { name: "W", value: avgEmotions.fear * 100 },
+    { name: "T", value: avgEmotions.surprise * 100 },
+    { name: "F", value: avgEmotions.sadness * 100 },
+    { name: "S", value: avgEmotions.disgust * 100 },
+    { name: "S", value: avgEmotions.anger * 100 },
+  ];
+
+  // Goal data
+  goalData = [
+    {
+      name: "Positive",
+      value: sentimentCounts.positive || 0,
+      color: "#ff5722",
+    },
+    { name: "Neutral", value: sentimentCounts.neutral || 0, color: "#9c27b0" },
+    {
+      name: "Negative",
+      value: sentimentCounts.negative || 0,
+      color: "#000000",
+    },
+  ];
+
+  // Sentiment pie chart data
+  sentimentPieData = [
+    {
+      name: "Positive",
+      value: sentimentCounts.positive || 0,
+      color: "#2e7d32",
+    },
+    {
+      name: "Negative",
+      value: sentimentCounts.negative || 0,
+      color: "#d32f2f",
+    },
+    { name: "Neutral", value: sentimentCounts.neutral || 0, color: "#9e9e9e" },
+  ];
+
+  // Calculate percentages for metrics
+  positivePercent =
+    totalTweets > 0
+      ? Math.round(((sentimentCounts.positive || 0) / totalTweets) * 100)
+      : 0;
+
+  engagementPercent = Math.min(Math.round((avgEngagement / 100) * 100), 200);
+  viralPercent =
+    totalTweets > 0 ? Math.round((viralTweets / totalTweets) * 100) : 0;
+
+  console.log(`Data processed: ${totalTweets} tweets`);
+}
 
 // Generate sentiment trends data
 export const months = [
@@ -246,17 +428,5 @@ export const EMOTION_COLORS = {
   Sadness: "#90caf9",
 };
 
-// Calculate percentages for metrics
-export const positivePercent = Math.round(
-  ((sentimentCounts.positive || 0) / totalTweets) * 100
-);
-export const engagementPercent = Math.min(
-  Math.round((avgEngagement / 100) * 100),
-  200
-);
-export const viralPercent = Math.round((viralTweets / totalTweets) * 100);
-
-// Log the number of English tweets for debugging
-console.log(
-  `Filtered to ${totalTweets} English tweets out of ${tweetsData.tweets.length} total tweets`
-);
+// Initialize data fetch
+fetchData();

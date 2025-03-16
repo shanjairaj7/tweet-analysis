@@ -10,10 +10,13 @@ import {
   Pie,
   Cell,
 } from "recharts";
-import { tweets } from "../utils/data";
-import tweetsData from "../../tweets.json";
 
-export const Engagement = () => {
+interface EngagementProps {
+  tweets: any[];
+  patterns: any;
+}
+
+export const Engagement = ({ tweets, patterns }: EngagementProps) => {
   // Calculate engagement by type
   const engagementByType = {
     likes: tweets.reduce(
@@ -194,13 +197,13 @@ export const Engagement = () => {
       : 0;
 
   // Content features impact on engagement
-  // Language impact - using original tweets data for comparison
-  const allTweets = tweetsData.tweets;
+  // Language impact - using tweets data for comparison
+  const allTweets = tweets;
   const englishTweets = allTweets.filter(
-    (tweet: any) => tweet.language === "en"
+    (tweet: any) => tweet.language === "English"
   );
   const arabicTweets = allTweets.filter(
-    (tweet: any) => tweet.language === "ar"
+    (tweet: any) => tweet.language === "Arabic"
   );
 
   const avgEnglishEngagement =
