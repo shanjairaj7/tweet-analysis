@@ -102,11 +102,11 @@ export const TabContainer = () => {
         <TabsTrigger value="overview" className="px-6 py-3">
           Overview
         </TabsTrigger>
-        <TabsTrigger value="sentiment" className="px-6 py-3">
-          Sentiment
-        </TabsTrigger>
         <TabsTrigger value="linguistics" className="px-6 py-3">
           Linguistics
+        </TabsTrigger>
+        <TabsTrigger value="sentiment" className="px-6 py-3">
+          Sentiment
         </TabsTrigger>
         <TabsTrigger value="temporal" className="px-6 py-3">
           Temporal
